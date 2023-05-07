@@ -17,6 +17,9 @@ For our largest file, we are going to make a [symbolic link](https://www.futurel
 
 ```
 # go inside your kmers folder
-ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK8A_OA--bc1011_BAK8A_OA.filtered.fasta.gz ./genome_assembly/kmers
+cd genome_assembly/kmers
+
+#symlink the large PacbioHiFi data there
+ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK8A_OA--bc1011_BAK8A_OA.filtered.fasta.gz .
 
 
