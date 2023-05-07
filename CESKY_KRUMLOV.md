@@ -13,6 +13,10 @@ mkdir genome_assembly/MitoHiFi
 ```
 ### 1.2 Symlink and copy files
 
-For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every students folder
+For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. 
+
+```
+# go inside your kmers folder
+ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK8A_OA--bc1011_BAK8A_OA.filtered.fasta.gz ./genome_assembly/kmers
 
 
