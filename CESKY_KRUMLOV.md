@@ -1,4 +1,4 @@
-# Genome assemnbly: kmer counting and assembly
+# Genome assembly: kmer counting and assembly
 
 Today we are going to count DNA kmers, (i) assemble a portion of a genome and (ii) run a pipeline to assemble and annotate a mitochondrial genome. This is really exciting. 
 
