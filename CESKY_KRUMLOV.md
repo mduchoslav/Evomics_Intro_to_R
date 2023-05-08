@@ -102,7 +102,27 @@ The command above means we are dumping
 
 Now you are going to take your output file and upload it to [genomescope](http://qb.cshl.edu/genomescope/) on the Browser. How does your kmer profile looks like? Let's regrupe and discuss before we go to genome assembly.
 
-## 3. Genome assembly with Hifiasm
+## 4. Genome assembly with Hifiasm
 
+Ok, that we learned a lot about kmer counting and we know the general statistics of our dataset, we are going to run hifiasm to assemble some reads! Unfortunatelly we cannot run hifiasm for the full dataset as it would use too much memory, so I have prepared a smaller dataset for us to run. This dataset is the one you have copied to your hifiasm folder.
 
+Ok, so the first thing you can do is to run asmstats to understand a bit about this small dataset.
+
+```
+# go to the hifiasm directory
+cd ../hifiasm
+
+#Run asmstats on the file
+asmstats PacBioHiFi_100.fa.gz
+```
+
+How many reads fo we have? What is the reads N50?
+
+Now let's run hifiasm on the reads
+
+```
+hifiasm -o ilAgrStra1.asm -t 4 PacBioHiFi_100.fa.gz
+```
+
+This should take only a couple of minutes. Once its done, hifiasm will output a series of files, they will finish in .bed and .gfa. Have a look at the [hifiasm](https://github.com/chhylp123/hifiasm) github page to get acostumed with the software. 
 
