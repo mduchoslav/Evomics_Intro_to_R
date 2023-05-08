@@ -4,7 +4,7 @@ Today we are going to count DNA kmers, (i) assemble a portion of a genome and (i
 
 ## 1. Organize your data
 ### 1.1. Create a directory
-In order to keep your project neat, go to your home folder and make a folder for your work today such as:
+In order to keep your project neat, go to your home folder and make folders for your work today such as:
 ```
 mkdir genome_assembly
 mkdir genome_assembly/kmers
@@ -13,7 +13,7 @@ mkdir genome_assembly/MitoHiFi
 ```
 ### 1.2 Symlink and/or copy files
 
-For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. 
+For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. Do as bellow:
 
 ```
 # go inside your kmers folder
@@ -22,11 +22,14 @@ cd genome_assembly/kmers
 #symlink the large PacbioHiFi data there
 ln -s /home/genomics/workshop_materials/mu2/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
 ```
-### 1.2.1 Now let's copy one more file we are going to need. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
+### 1.2.1 Now let's get one more file we are going to need. This is a small file, so we can copy it. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
 
 ```
 # leave the kmers folder and go to hifiasm
 cd ../hifiasm
+
+# Run the command bellow to see where you are. pwd will print the whole path to the directory (folder) where yoy currently are.
+pwd
 
 # This file is small, so we can copy it
 cp /home/genomics/workshop_materials/mu2/PacBioHiFi_100.fa.gz .
@@ -37,4 +40,12 @@ ln -s PacBioHiFi_100.fa.gz ../MitoHiFi/
 
 ## 2. Counting kmers 
 
-Ok great. Now that you have the files symbolically linked and copied, let's start our analyses. The first one we are going to run is FastK to count kmers of 31bp (k=31). 
+Ok great. Now that you have the files symbolically linked and/or copied, let's start our analyses. The first one we are going to run is [FastK](https://github.com/thegenemyers/FASTK) to count kmers of 31bp (k=31) for our largest dataset. We do as follows:
+
+```
+cd ../kmers
+
+# Always remember: if you feel lost, run ```pwd``` to confirm where you are.
+```
+
+
