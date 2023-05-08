@@ -22,7 +22,8 @@ cd genome_assembly/kmers
 #symlink the large PacbioHiFi data there
 ln -s /home/genomics/workshop_materials/mu2/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
 ```
-### 1.2.1 Now let's get one more file we are going to need. This is a small file, so we can copy it. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
+### 1.2.1 Copy the smaller file.
+Now let's get one more file we are going to need. This is a small file, so we can copy it. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
 
 ```
 # leave the kmers folder and go to hifiasm
@@ -57,7 +58,7 @@ FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
 ```
 This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45.
 
-### 3. General reads statistics
+## 3. General reads statistics
 Ok, so while FastK is running, I want you to get to know your dataset a bit better. For that, we can run the script asmsstats that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
 
 
