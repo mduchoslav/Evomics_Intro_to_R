@@ -76,7 +76,26 @@ Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answ
 
 5-) What is your reads N50?
 
+Take a note of all of that so we can discuss the results together later today.
 
+### 3.1 General stats: manipulating files on the command line
+
+### 3.2 Plotting reads length distribution
+
+### 2.1 Running Histex
+
+Ok, I know the numbering seems a bit confunsing as we just came back to 2.1. This is not wrong, it'a because now we are going to go back to the results we got by running FastK. If you run was succesfull, you should now have two files in your kmers directory, one that ends in .hist and the other in .prof. We want to use the .hist output now to create a user readable histogram from Gene's kmer counter. We do this with Histex for the same FasK package.
+
+```
+Histex -h1:1000 -kA  ilAgrStra1_PacBioHiFi_filtered.hist > 
+```
+The command above means we are dumping 
+
+ Talk to shane as ask why this is giving me a very strange prediction
+ 
+ /software/team311/cz3/bin/Histex -h1:1000 -kA m64222e_210328_153138.ccs.bc1011_BAK8A_OA--bc1011_BAK8A_OA.filtered.hist |  awk '{print $1" "$2}' > genomescope.hist
+ 
+ http://qb.cshl.edu/genomescope/analysis.php?code=cjMZcOHbX8F51WZprcvZ
  
 
 
