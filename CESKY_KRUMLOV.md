@@ -20,7 +20,7 @@ For our largest file, we are going to make a [symbolic link](https://www.futurel
 cd genome_assembly/kmers
 
 #symlink the large PacbioHiFi data there
-ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK8A_OA--bc1011_BAK8A_OA.filtered.fasta.gz .
+ln -s /home/genomics/workshop_materials/mu2/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
 ```
 #Now let's copy one more file we are going to need. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
 
@@ -29,7 +29,7 @@ ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK
 cd ../hifiasm
 
 # This file is small, so we can copy it
-cp /home/genomics/workshop_materials/mu2/PacBio_reads.fa .
+cp /home/genomics/workshop_materials/mu2/PacBioHiFi_100.fa .
 
 # And now let's symlink this file from hifiasm to our MitoHiFi folder. 
 ln -s PacBio_reads.fa ../MitoHiFi/
