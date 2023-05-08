@@ -61,7 +61,19 @@ This will take around 45 minutes to run, so let's go to step 3 to run a few more
 ## 3. General reads statistics
 Ok, so while FastK is running, I want you to get to know your dataset a bit better. For that, we can run the script asmsstats that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
 
+```
+asmstats ilAgrStra1_PacBioHiFi_filtered.fasta.gz > ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats
+```
 
+Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answer the following questions:
+1-) How many reads in total do you have?
+2-) What is the size of the largest read in your dataset?
+3-) What is the size of the smallest read in your dataset?
+4-) What is the total amount of basepairs in your dataset?
+5-) What is your reads N50?
+
+
+ 
 
 
 
