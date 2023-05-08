@@ -98,5 +98,11 @@ The command above means we are dumping
  http://qb.cshl.edu/genomescope/analysis.php?code=cjMZcOHbX8F51WZprcvZ
  
 
+### 2.2. Plotting it on Genomescope
+
+Now you are going to take your output file and upload it to [genomescope](http://qb.cshl.edu/genomescope/) on the Browser. How does your kmer profile looks like? Let's regrupe and discuss before we go to genome assembly.
+
+## 3. Genome assembly with Hifiasm
+
 
 
