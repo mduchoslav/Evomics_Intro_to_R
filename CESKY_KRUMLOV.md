@@ -27,7 +27,9 @@ ln -s /home/genomics/workshop_materials/mu2/m64222e_210328_153138.ccs.bc1011_BAK
 ```
 # leave the kmers folder and go to hifiasm
 cd ../hifiasm
+
 # This file is small, so we can copy it
 cp /home/genomics/workshop_materials/mu2/PacBio_reads.fa .
+
 # And now let's symlink this file from hifiasm to our MitoHiFi folder. 
 ln -s PacBio_reads.fa ../MitoHiFi/
