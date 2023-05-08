@@ -43,9 +43,24 @@ ln -s PacBioHiFi_100.fa.gz ../MitoHiFi/
 Ok great. Now that you have the files symbolically linked and/or copied, let's start our analyses. The first one we are going to run is [FastK](https://github.com/thegenemyers/FASTK) to count kmers of 31bp (k=31) for our largest dataset. We do as follows:
 
 ```
+# Go inside the kmers directory
 cd ../kmers
 
-# Always remember: if you feel lost, run ```pwd``` to confirm where you are.
+# Always remember: if you feel lost, run pwd to confirm where you are.
+pwd
+
+# Let's list files in your directory with the command bellow, do you see your PacBioHiFi dataset?
+ls -ltrh .
+
+# If you see your file, now let's count kmers with FastK, run the command bellow
+FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
 ```
+This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45.
+
+### 3. General reads statistics
+Ok, so while FastK is running, I want you to get to know your dataset a bit better. For that, we can run the script asmsstats that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
+
+
+
 
 
