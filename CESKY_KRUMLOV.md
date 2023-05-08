@@ -29,7 +29,7 @@ ln -s /home/genomics/workshop_materials/mu2/ilAgrStra1_PacBioHiFi_filtered.fasta
 cd ../hifiasm
 
 # This file is small, so we can copy it
-cp /home/genomics/workshop_materials/mu2/PacBioHiFi_100.fa .
+cp /home/genomics/workshop_materials/mu2/PacBioHiFi_100.fa.gz .
 
 # And now let's symlink this file from hifiasm to our MitoHiFi folder. 
-ln -s PacBio_reads.fa ../MitoHiFi/
+ln -s PacBioHiFi_100.fa.gz ../MitoHiFi/
