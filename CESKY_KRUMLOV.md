@@ -67,9 +67,13 @@ asmstats ilAgrStra1_PacBioHiFi_filtered.fasta.gz > ilAgrStra1_PacBioHiFi_filtere
 
 Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answer the following questions:
 1-) How many reads in total do you have?
+
 2-) What is the size of the largest read in your dataset?
+
 3-) What is the size of the smallest read in your dataset?
+
 4-) What is the total amount of basepairs in your dataset?
+
 5-) What is your reads N50?
 
 
