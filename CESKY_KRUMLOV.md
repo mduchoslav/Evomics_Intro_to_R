@@ -82,21 +82,15 @@ Take a note of all of that so we can discuss the results together later today.
 
 ### 3.2 Plotting reads length distribution
 
-### 2.1 Running Histex
+### 2.1 Running Histex and GeneScopeFK
 
 Ok, I know the numbering seems a bit confunsing as we just came back to 2.1. This is not wrong, it'a because now we are going to go back to the results we got by running FastK. If you run was succesfull, you should now have two files in your kmers directory, one that ends in .hist and the other in .prof. We want to use the .hist output now to create a user readable histogram from Gene's kmer counter. We do this with Histex for the same FasK package.
 
 ```
-Histex -h1:1000 -G  ilAgrStra1_PacBioHiFi_filtered.hist > 
+Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | Rscript GeneScopeFK.R -o Output -k 31
 ```
 The command above means we are dumping 
 
- Talk to shane as ask why this is giving me a a smaller genome size prediction!!
-
- http://qb.cshl.edu/genomescope/analysis.php?code=cjMZcOHbX8F51WZprcvZ
- 
- http://qb.cshl.edu/genomescope/user_data/CUIillugCPfo67MQy2aR/plot.png
- 
 
 ### 2.2. Plotting it on Genomescope
 
