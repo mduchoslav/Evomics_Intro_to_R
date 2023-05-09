@@ -91,10 +91,11 @@ Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | Rscript GeneScopeFK.R -
 ```
 The command above means we are dumping 
 
+Does the reads kmer plotted fit the model?
+What is the expected genome size?
+What is the expected heterozigosity?
+What is the expected repeat content?
 
-### 2.2. Plotting it on Genomescope
-
-Now you are going to take your output file and upload it to [genomescope](http://qb.cshl.edu/genomescope/) on the Browser. How does your kmer profile looks like? Let's regrupe and discuss before we go to genome assembly.
 
 ## 4. Genome assembly with Hifiasm
 
@@ -117,7 +118,6 @@ Now let's run hifiasm on the reads
 ```
 hifiasm -o ilAgrStra1.asm -t 4 PacBioHiFi_100.fa.gz
 ```
-
 This should take only a couple of minutes. Once its done, hifiasm will output a series of files, they will end in .bed and .gfa. Have a look at the [hifiasm](https://github.com/chhylp123/hifiasm) github page to get acostumed with the software. 
 
 The output we are interested in is the one ending in .asm.bp.r_utg.noseq.gfa. Open this file on bandage. Bandage will look something like the image bellow, you need to upload the file and then click 'Draw graph'.
@@ -126,3 +126,7 @@ The output we are interested in is the one ending in .asm.bp.r_utg.noseq.gfa. Op
 ![image](https://user-images.githubusercontent.com/4116164/236863823-05841121-6dd8-40af-8885-6482662f423c.png)
 
 The output we are interested in is the one ending in .asm.bp.r_utg.noseq.gfa. Open this file on bandage. 
+
+```
+awk '/^S/ {print ">"$2"\n"$3}' ilAgrStra1.asm.bp.p_ctg.gfa > ilAgrStra1.asm.bp.p_ctg.fa
+```
