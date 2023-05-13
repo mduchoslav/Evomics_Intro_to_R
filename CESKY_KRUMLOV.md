@@ -195,7 +195,7 @@ ls .
 For you to have a look at the help message of MitoHiFi and to start getting to know it do:
 
 ```
-singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py --helo
+singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py --help
 ```
 
 Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. To do that, it maps those reads to a close-related mitogenome reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
