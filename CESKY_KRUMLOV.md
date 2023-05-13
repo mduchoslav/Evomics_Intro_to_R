@@ -58,8 +58,19 @@ FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
 ```
 This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45. Open a new terminal tab and continue working there.
 
-## 3. General reads statistics
-Ok, so while `FastK` is running, I want you to get to know your dataset a bit better. For that, we can run the script `asmsstats` that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
+## 3. General reads analyzes and statistics
+Ok, so while `FastK` is running, I want you to get to know your dataset a bit better. So we are going to plot your reads lenght distribution, and we are going to calculate general metrics for your reads. It's important that we understand the data we are assembling. Looking at a plot of our reads length distribution, knowing general statistics for our file and doing a kmer analysis are fundamental steps to know what to expect when are assembly is done. 
+
+### 3.1 Plotting reads length distribution
+ You can use this python script I wrote to plot your reads length distribution as such:
+ 
+ ```
+ python plot_fasta_length.py ilAgrStra1_PacBioHiFi_filtered.fasta.gz ilAgrStra1_PacBioHiFi_filtered.png &
+ ```
+ This will run for a few minutes, go to the next step.
+
+## 3.2 Calculating general reads statistics
+We can run the script `asmsstats` that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
 
 ```
 asmstats ilAgrStra1_PacBioHiFi_filtered.fasta.gz > ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats
@@ -80,7 +91,6 @@ Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answ
 Take a note of all of that so we can discuss the results together later today.
 
 ### 3.1 General stats: manipulating files on the command line
-
 We have just ran `asmstats` which is a nice script written by my boss Shane McCarthy, but I want to show that even if you don't have that script right away, you can get first general metrics for your fasta file with simple unix commands.
 We know all fasta sequence have a header starting with `>` plus an ID. Then, in the next line we have our DNA or protein sequence. So, if we want to count the number of sequences in a fasta file, one thing we can do it count how many times `>` happens in that file. We can do that as follows:
 
@@ -88,13 +98,10 @@ We know all fasta sequence have a header starting with `>` plus an ID. Then, in 
 zcat ilAgrStra1_PacBioHiFi_filtered.fasta.gz | grep ">" | wc
 
 ```
-Let me explain the command above: first you are displaying the content of the compressed file with zcat (if they file wasn't zipped, you could go straight to grep), then we use a pipe `|` that basically sends the result of our first command to the next, so we are displaying the content of the zipped multifasta file, and then we are using `grep` to find a specific pattern inside our file, which is `>`. Finally we send the result of grep with a pipe `|` to another comand, the `wc`, which basically means _word count_. So we are counting how many times the symbol `>` happens in that file, wich is the same as calculating how many fasta sequences we have in our fasta file. :)  
+Let me explain the command above: first we are displaying the content of the compressed file with zcat (if the file wasn't zipped, we could go straight to grep), then we use a pipe `|` that basically sends the result of our first command to the next, so we are displaying the content of the zipped multifasta file, and then we are using `grep` to find a specific pattern inside our file, which is `>`. Finally we send the result of grep with a pipe `|` to another comand, the `wc`, which basically means _word count_. So we are counting how many times the symbol `>` happens in that file, wich is the same as calculating how many fasta sequences we have in our fasta file. :)  
 
-
-### 3.2 Plotting reads length distribution
 
 ### 2.1 Running Histex and GeneScopeFK
-
 Ok, I know the numbering seems a bit confusing as we just came back to 2.1. This is not wrong, it's because now we are going to go back to the results we got by running `FastK`. If you run was successful, you should now have two files in your kmers directory, one that ends in .hist and the other in .prof. We want to use the .hist output now to create a user readable histogram from Gene's kmer counter. We do this with Histex for the same FasK package.
 
 ```
