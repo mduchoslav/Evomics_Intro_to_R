@@ -197,7 +197,7 @@ ls .
 For you to have a look at the help message of MitoHiFi and to start getting to know it do:
 
 ```
-singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py --help
+singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif mitohifi.py --help
 ```
 
 Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. To do that, it maps those reads to a close-related mitogenome reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
@@ -205,7 +205,7 @@ Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a 
 Remember we are assembling data for _Agriphila straminella_. So we want to find the closest referent available for it, including it's own mitogenome, if available.
 
 ```
-singularity exec docker://ghcr.io/marcelauliano/mitohifi:master findMitoReference.py --species "Agriphila straminella" --outfolder . --min_length 16000
+singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif findMitoReference.py --species "Agriphila straminella" --outfolder . --min_length 16000
 ```
 
 This should write two files for a reference mitogenome (NC_061606.1) to your folder: one ending in `.fasta` and another in `.gb`. 
@@ -213,7 +213,7 @@ This should write two files for a reference mitogenome (NC_061606.1) to your fol
 Now we have all we need to run MitoHiFi. Good! We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
 
 ```
-singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_061606.1.fasta -g NC_061606.1.gb -o 5 -t 4 
+singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_061606.1.fasta -g NC_061606.1.gb -o 5 -t 4 
 ```
 
 Nice, ok. This will now run for a few minutes. What we are running above is the following: we are starting MitoHiFi from the unasembled reads of our species of insterest (`-r`), using the mitogenome of _Crambus perlellus_ as a close-related reference in `-f` and `-f`. MitoHiFi is going to annotate the mitogenome with MitoFinder, and for that it needs the genetic mitochondrial code for invertebrates which is given with `-o 5 `. Finally, we are using 4 CPUs (or threads) for this run `-t 4`.
