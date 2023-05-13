@@ -181,10 +181,10 @@ Because MitoHiFi has a lot of dependencies, we have built its own little univers
 We are going to execute MitoHiFi Docker image with singularity today. First let's move inside our MitoHiFi folder.
 
 ```
-#Check where you are with `pwd`. The command to go to the MitoHiFi folder should be something like the below:
+#Check where you are with `pwd`. 
 pwd
 
-#change directories
+#change directories. The command to go to the MitoHiFi folder should be something like the below:
 cd ../genome_assembly/MitoHiFi
 
 # List your directory. We are going to need the `PacBioHiFi_100.fa.gz` file for this run. Do you see it there?
