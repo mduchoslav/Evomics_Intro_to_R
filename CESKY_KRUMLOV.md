@@ -13,6 +13,8 @@ mkdir genome_assembly/MitoHiFi
 ```
 ### 1.2 Symlink and/or copy files
 
+All data we are going to need are under `/home/genomics/workshop_materials/genomeAssembly_files`. But you won't execute anything from there. We are copying files over or making symbolic links to the folders you just created in your home directory.
+
 For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. Do as below:
 
 ```
@@ -20,7 +22,7 @@ For our largest file, we are going to make a [symbolic link](https://www.futurel
 cd genome_assembly/kmers
 
 #symlink the large PacbioHiFi data there
-ln -s /home/genomics/workshop_materials/mu2/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
+ln -s /home/genomics/workshop_materials/genomeAssembly_files/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
 ```
 ### 1.2.1 Copy the smaller file.
 Now let's get one more file we are going to need. This is a small file, so we can copy it. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
@@ -33,7 +35,7 @@ cd ../hifiasm
 pwd
 
 # This file is small, so we can copy it
-cp /home/genomics/workshop_materials/mu2/PacBioHiFi_100.fa.gz .
+cp /home/genomics/workshop_materials/genomeAssembly_files/PacBioHiFi_100.fa.gz .
 
 # And now let's symlink this file from hifiasm to our MitoHiFi folder. 
 ln -s PacBioHiFi_100.fa.gz ../MitoHiFi/
