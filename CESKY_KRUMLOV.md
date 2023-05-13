@@ -81,6 +81,16 @@ Take a note of all of that so we can discuss the results together later today.
 
 ### 3.1 General stats: manipulating files on the command line
 
+We have just ran `asmstats` which is a nice script written by my boss Shane McCarthy, but I want to show you that even if you don't have that script right away, you can get first general metrics from your fasta file with simple command line arguments.
+We know all fasta sequence have a header starting with `>` then an ID and then in the next line we have our DNA or protein sequence. So, if we want to count the number of sequences in a fasta file, one thing you can do it count how many times `>` happens in that file. So you can do the following:
+
+```
+zcat ilAgrStra1_PacBioHiFi_filtered.fasta.gz | grep ">" | wc
+
+```
+Let me explain the command above: first you are displaying the content of the compressed file with zcat (if they file wasn't zipped, you could go straight to grep), then we use a pipe `|` that basically sends the result of our first command to the next, so we are displaying the content of the zipped multifasta file, and then we are using `grep` to find a specific pattern inside our file, which is `>`. Finally we send the result of grep with a pipe `|` to another comand, the `wc`, which basically means _word count_. So we are counting how many times the symbol `>` happens in that file, wich is the same as calculating how many fasta sequences we have in our fasta file. :)  
+
+
 ### 3.2 Plotting reads length distribution
 
 ### 2.1 Running Histex and GeneScopeFK
