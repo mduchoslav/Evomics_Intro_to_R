@@ -145,7 +145,29 @@ The first output we are interested in is the one ending in `.asm.bp.r_utg.noseq.
 ![image](https://user-images.githubusercontent.com/4116164/236863823-05841121-6dd8-40af-8885-6482662f423c.png)
 
  
+Humn... what do you see when you look at the Bandage image? Is it a linear or circular sequence? Interesting... 
+Ok, now we are going to go back to the other Hifiasm outputs. We have open the unitigs one on Bandage, but now we want to work with the final contig output Hifiasm has generated. Hifiasm outpus it all in the [.gfa](http://gfa-spec.github.io/GFA-spec/GFA1.html) format, so we need to use the one liner bellow to get a fasta sequence out of the .gfa.
 
 ```
 awk '/^S/ {print ">"$2"\n"$3}' ilAgrStra1.asm.bp.p_ctg.gfa > ilAgrStra1.asm.bp.p_ctg.fa
 ```
+Ok, now we have a fasta sequence! WELL DONE, you have completed your first genome assembly!
+
+Want to analyze a bit what you have assembled? Why not run `asmstats` on it
+
+```
+asmstats ilAgrStra1.asm.bp.p_ctg.fa > ilAgrStra1.asm.bp.p_ctg.fa.stats
+```
+What are the statistics of this file?, N50, size, total assembly size?
+
+Ok, so at the beginning of the tutorial I told you that we would be assembling the moth _Agriphila straminella_. But this small dataset contain only a few reads. I wonder if we have assembled something specific from _A. straminella_, like a specific chromossome or... ? Could you copy some of the sequence you've assembled and [blast it on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)?
+
+To select a portion of the sequence show it, select, copy and past on the blast browser. To show the sequence do:
+
+```
+more ilAgrStra1.asm.bp.p_ctg.fa
+```
+
+## 5. Assembling and annotating mithocondrial genomes
+
+
