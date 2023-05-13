@@ -187,6 +187,13 @@ pwd
 #change directories. The command to go to the MitoHiFi folder should be something like the below:
 cd ../genome_assembly/MitoHiFi
 
+For you to have a look at the help message of MitoHiFi and to start getting to know it do:
+
+```
+singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py --helo
+```
+
+
 # List your directory. We are going to need the `PacBioHiFi_100.fa.gz` file for this run. Do you see it there?
 ls .
 ```
