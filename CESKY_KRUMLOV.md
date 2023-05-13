@@ -188,7 +188,7 @@ cd ../genome_assembly/MitoHiFi
 ls .
 ```
 
-Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. For that it maps those reads to a close-related reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
+Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. To do that, it maps those reads to a close-related mitogenome reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
 
 Remember we are assembling data for _Agriphila straminella_. So we want to find the closest referent available for it, including it's own mitogenome, if available.
 
@@ -196,7 +196,7 @@ Remember we are assembling data for _Agriphila straminella_. So we want to find 
 singularity exec docker://ghcr.io/marcelauliano/mitohifi:master findMitoReference.py --species "Agriphila straminella" --outfolder . --min_length 16000
 ```
 
-This should write two files for a reference mitogenome (NC_061606.1)to your folder: one ending in `.fasta` and another in `.gb`. 
+This should write two files for a reference mitogenome (NC_061606.1) to your folder: one ending in `.fasta` and another in `.gb`. 
 
 Go, so now we have all we need to run MitoHiFi. We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
 
