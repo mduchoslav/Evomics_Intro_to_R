@@ -175,7 +175,7 @@ Let's dicuss this and all the other results as a big group.
 
 Beyond the nuclear genome, we have inside all (most) of us animals another genome: the mitochondrial one. PacBio HiFi is great in assembling it too, but because of the cirular nature of the molecule, assemblers often assemble it redundantly (as we just discussed for the case above). So I have written a pipeline to specifically assemble mitochondrial genomes, it's called [MitoHiFi](https://github.com/marcelauliano/MitoHiFi). MitoHiFi basically orchestrats a series of other tools to assemble (Hifiasm is the assembler!), remove redandancy, annotate, rotate, produce plots and statistics for your mitogenome. MitoHiFi has written to work with PacBio HiFi reads and it has many runnign modes. Today we are going to run it starting from reads (parameter `-r`).
 
-Because MitoHiFi has a lot of dependencies, we have built its own little universe: we built a Docker container for MitoHiFi. So anytime someone executes MitoHiFi from this Docker container (it can be from Docker or with singularity, for example), this person won't find any problems with software dependencies because it is all contained inside that little MitoHiFi Docker universe.
+Because MitoHiFi has a lot of dependencies, we have built its own little universe: we built a Docker container for MitoHiFi. So anytime someone executes MitoHiFi from this Docker container (it can be from Docker or with [singularity](https://docs.sylabs.io/guides/2.6/user-guide/singularity_and_docker.html), for example), this person won't find any problems with software dependencies because it is all contained inside that little MitoHiFi Docker universe.
 
 We are going to execute MitoHiFi Docker image with singularity today. First let's move inside our MitoHiFi folder.
 
@@ -187,6 +187,29 @@ cd ../genome_assembly/MitoHiFi
 ls .
 ```
 
+Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. For that it maps those reads to a close-related reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
 
+Remember we are assembling data for _Agriphila straminella_. So we want to find the closest referent available for it, including it's own mitogenome, if available.
+
+```
+singularity exec docker://ghcr.io/marcelauliano/mitohifi:master findMitoReference.py --species "Agriphila straminella" --outfolder . --min_length 16000
+```
+
+This should write two files for a reference mitogenome (NC_061606.1)to your folder: one ending in `.fasta` and another in `.gb`. 
+
+Go, so now we have all we need to run MitoHiFi. We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
+
+```
+singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_061606.1.fasta -g NC_061606.1.gb -o 5 -t 4 
+```
+
+Nice, ok. This will now run for a few minutes. What we are running above is the following: we are starting MitoHiFi from the unasembled reads of our species of insterest (`-r`), using the mitogenome of _Crambus perlellus_ as a close-related reference in `-f` and `-f`. MitoHiFi is going to annotate the mitogenome with MitoFinder, and for that it needs the genetic mitochondrial code for invertebrates which is given with `-o 5 `. Finally, we are using 4 CPUs (or threads) for this run `-t 4`.
+
+Have a look at our github page to get yourself familiar with the software [MitoHiFi github](https://github.com/marcelauliano/MitoHiFi). 
+
+Once MitoHiFi finishes, it will output a series of files. The most important one being the mitogenome itself called `final_mitogenome.fasta` and it's annotation in genbank format `final_mitogenome.gb`. I also want you to have a look at the plots: `final_mitogenome.annotation.png` and `final_mitogenome.coverage.png`. Have a look also at the general statistics of this mitogenome assembly an annotation in `contis_stats.tsv`.
+
+CONGRATULATIONS!
+Today you have done a lot in the world of _de novo_ genome assembly. You have (i) counted kmers to understand what is there in your reads dataset, (ii) you have calculated general statistics and plotted reads length distribution, (iii) you have ran a genome assembly from scracth using hifiasm, (iv) you have looked at hifiasm graphs, (v) you ran MitoHiFi that runs assembly (with hifiasm) and annotates a complete mitochondrial genome. WELL DONE! 
 
 
