@@ -81,8 +81,8 @@ Take a note of all of that so we can discuss the results together later today.
 
 ### 3.1 General stats: manipulating files on the command line
 
-We have just ran `asmstats` which is a nice script written by my boss Shane McCarthy, but I want to show you that even if you don't have that script right away, you can get first general metrics from your fasta file with simple command line arguments.
-We know all fasta sequence have a header starting with `>` then an ID and then in the next line we have our DNA or protein sequence. So, if we want to count the number of sequences in a fasta file, one thing you can do it count how many times `>` happens in that file. So you can do the following:
+We have just ran `asmstats` which is a nice script written by my boss Shane McCarthy, but I want to show that even if you don't have that script right away, you can get first general metrics for your fasta file with simple unix commands.
+We know all fasta sequence have a header starting with `>` plus an ID. Then, in the next line we have our DNA or protein sequence. So, if we want to count the number of sequences in a fasta file, one thing we can do it count how many times `>` happens in that file. We can do that as follows:
 
 ```
 zcat ilAgrStra1_PacBioHiFi_filtered.fasta.gz | grep ">" | wc
