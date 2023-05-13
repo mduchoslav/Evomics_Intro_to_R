@@ -13,7 +13,7 @@ mkdir genome_assembly/MitoHiFi
 ```
 ### 1.2 Symlink and/or copy files
 
-For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. Do as bellow:
+For our largest file, we are going to make a [symbolic link](https://www.futurelearn.com/info/courses/linux-for-bioinformatics/0/steps/201767#:~:text=A%20symlink%20is%20a%20symbolic,directory%20in%20any%20file%20system.) so we don't have to copy it to every student folder. Do as below:
 
 ```
 # go inside your kmers folder
@@ -29,7 +29,7 @@ Now let's get one more file we are going to need. This is a small file, so we ca
 # leave the kmers folder and go to hifiasm
 cd ../hifiasm
 
-# Run the command bellow to see where you are. pwd will print the whole path to the directory (folder) where yoy currently are.
+# Run the command below to see where you are. pwd will print the whole path to the directory (folder) where yoy currently are.
 pwd
 
 # This file is small, so we can copy it
@@ -50,22 +50,23 @@ cd ../kmers
 # Always remember: if you feel lost, run pwd to confirm where you are.
 pwd
 
-# Let's list files in your directory with the command bellow, do you see your PacBioHiFi dataset?
+# Let's list files in your directory with the command below, do you see your PacBioHiFi dataset?
 ls -ltrh .
 
-# If you see your file, now let's count kmers with FastK, run the command bellow
+# If you see your file, now let's count kmers with FastK, run the command below
 FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
 ```
-This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45.
+This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45. Open a new terminal tab and continue working there.
 
 ## 3. General reads statistics
-Ok, so while FastK is running, I want you to get to know your dataset a bit better. For that, we can run the script asmsstats that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
+Ok, so while `FastK` is running, I want you to get to know your dataset a bit better. For that, we can run the script `asmsstats` that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
 
 ```
 asmstats ilAgrStra1_PacBioHiFi_filtered.fasta.gz > ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats
 ```
 
 Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answer the following questions:
+
 1-) How many reads in total do you have?
 
 2-) What is the size of the largest read in your dataset?
@@ -84,7 +85,7 @@ Take a note of all of that so we can discuss the results together later today.
 
 ### 2.1 Running Histex and GeneScopeFK
 
-Ok, I know the numbering seems a bit confunsing as we just came back to 2.1. This is not wrong, it'a because now we are going to go back to the results we got by running FastK. If you run was succesfull, you should now have two files in your kmers directory, one that ends in .hist and the other in .prof. We want to use the .hist output now to create a user readable histogram from Gene's kmer counter. We do this with Histex for the same FasK package.
+Ok, I know the numbering seems a bit confusing as we just came back to 2.1. This is not wrong, it's because now we are going to go back to the results we got by running `FastK`. If you run was successful, you should now have two files in your kmers directory, one that ends in .hist and the other in .prof. We want to use the .hist output now to create a user readable histogram from Gene's kmer counter. We do this with Histex for the same FasK package.
 
 ```
 Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | Rscript GeneScopeFK.R -o Output -k 31
@@ -111,9 +112,9 @@ cd ../hifiasm
 asmstats PacBioHiFi_100.fa.gz
 ```
 
-How many reads fo we have? What is the reads N50?
+How many reads do we have? What is the reads N50?
 
-Now let's run hifiasm on the reads
+Now let's run hifiasm on the reads.
 
 ```
 hifiasm -o ilAgrStra1.asm -t 4 PacBioHiFi_100.fa.gz
