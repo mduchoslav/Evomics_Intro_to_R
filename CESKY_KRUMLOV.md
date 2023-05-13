@@ -116,7 +116,7 @@ What is the expected heterozigosity?
 What is the expected repeat content?
 
 
-Exciting! You have done a kmer count and analyses of a complete PacBio dataset! <3 #StayCalmAndCountKmers 
+Exciting! You have done a kmer count and analyses of a complete PacBio dataset! &hearts; #StayCalmAndCountKmers 
 
 ## 4. Genome assembly with Hifiasm
 
