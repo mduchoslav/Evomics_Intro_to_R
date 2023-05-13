@@ -198,7 +198,7 @@ singularity exec docker://ghcr.io/marcelauliano/mitohifi:master findMitoReferenc
 
 This should write two files for a reference mitogenome (NC_061606.1) to your folder: one ending in `.fasta` and another in `.gb`. 
 
-Go, so now we have all we need to run MitoHiFi. We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
+Now we have all we need to run MitoHiFi. Good! We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
 
 ```
 singularity exec docker://ghcr.io/marcelauliano/mitohifi:master mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_061606.1.fasta -g NC_061606.1.gb -o 5 -t 4 
