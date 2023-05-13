@@ -162,12 +162,31 @@ What are the statistics of this file?, N50, size, total assembly size?
 
 Ok, so at the beginning of the tutorial I told you that we would be assembling the moth _Agriphila straminella_. But this small dataset contain only a few reads. I wonder if we have assembled something specific from _A. straminella_, like a specific chromossome or... ? Could you copy some of the sequence you've assembled and [blast it on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)?
 
-To select a portion of the sequence show it, select, copy and past on the blast browser. To show the sequence do:
+To select a portion of the sequence, copy and past it on the blast browser, do:
 
 ```
 more ilAgrStra1.asm.bp.p_ctg.fa
 ```
 
-## 5. Assembling and annotating mithocondrial genomes
+What is this sequence?
+Let's dicuss this and all the other results as a big group.
+
+## 5. Assembling and annotating mitochondrial genomes
+
+Beyond the nuclear genome, we have inside all (most) of us animals another genome: the mitochondrial one. PacBio HiFi is great in assembling it too, but because of the cirular nature of the molecule, assemblers often assemble it redundantly (as we just discussed for the case above). So I have written a pipeline to specifically assemble mitochondrial genomes, it's called [MitoHiFi](https://github.com/marcelauliano/MitoHiFi). MitoHiFi basically orchestrats a series of other tools to assemble (Hifiasm is the assembler!), remove redandancy, annotate, rotate, produce plots and statistics for your mitogenome. MitoHiFi has written to work with PacBio HiFi reads and it has many runnign modes. Today we are going to run it starting from reads (parameter `-r`).
+
+Because MitoHiFi has a lot of dependencies, we have built its own little universe: we built a Docker container for MitoHiFi. So anytime someone executes MitoHiFi from this Docker container (it can be from Docker or with singularity, for example), this person won't find any problems with software dependencies because it is all contained inside that little MitoHiFi Docker universe.
+
+We are going to execute MitoHiFi Docker image with singularity today. First let's move inside our MitoHiFi folder.
+
+```
+#Check where you are with pwd. The command to go to MitoHiFi should be something like the below:
+cd ../genome_assembly/MitoHiFi
+
+# List your directory. We are going to need the PacBioHiFi_100.fa.gz file for this run. Do you see it there?
+ls .
+```
+
+
 
 
