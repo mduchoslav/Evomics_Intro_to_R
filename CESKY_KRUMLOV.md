@@ -29,7 +29,7 @@ Now let's get one more file we are going to need. This is a small file, so we ca
 # leave the kmers folder and go to hifiasm
 cd ../hifiasm
 
-# Run the command below to see where you are. pwd will print the whole path to the directory (folder) where yoy currently are.
+# Run the command below to see where you are. pwd will print the whole path to the directory (folder) where you currently are.
 pwd
 
 # This file is small, so we can copy it
