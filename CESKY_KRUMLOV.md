@@ -22,7 +22,7 @@ For our largest file, we are going to make a [symbolic link](https://www.futurel
 cd genome_assembly/kmers
 
 #symlink the large PacbioHiFi data there
-ln -s /home/genomics/workshop_materials/genomeAssembly_files/ilAgrStra1_PacBioHiFi_filtered.fasta.gz .
+ln -s /home/genomics/workshop_materials/genomeAssembly_files/ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz .
 ```
 ### 1.2.1 Copy the smaller file.
 Now let's get one more file we are going to need. This is a small file, so we can copy it. This time we are placing it in the hifiasm folder. We will also need it in the MitoHiFi folder, so after we copy it to the hifiasm folder, we are going to symlink it to the MitoHiFi folder.
@@ -56,7 +56,7 @@ pwd
 ls -ltrh .
 
 # If you see your file, now let's count kmers with FastK, run the command below
-FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
+FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz
 ```
 This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45. Open a new terminal tab and continue working there.
 
@@ -67,7 +67,7 @@ Ok, so while `FastK` is running, I want you to get to know your dataset a bit be
  You can use this python script I wrote to plot your reads length distribution as such:
  
  ```
- python plot_fasta_length.py ilAgrStra1_PacBioHiFi_filtered.fasta.gz ilAgrStra1_PacBioHiFi_filtered.png &
+ python plot_fasta_length.py ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz ilAgrStra1_PacBioHiFi_filtered.0.5.png &
  ```
  This will run for a few minutes, go to the next step.
 
@@ -75,10 +75,10 @@ Ok, so while `FastK` is running, I want you to get to know your dataset a bit be
 We can run the script `asmsstats` that will give us some general statistics such as: (i) numbers of reads, max read length, min read length, how many base pairs in total, [N50](https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics) of our reads and so on.
 
 ```
-asmstats ilAgrStra1_PacBioHiFi_filtered.fasta.gz > ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats
+asmstats ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz > ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz.stats
 ```
 
-Now have a look at your ilAgrStra1_PacBioHiFi_filtered.fasta.gz.stats file. Answer the following questions:
+Now have a look at your ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz.stats file. Answer the following questions:
 
 1-) How many reads in total do you have?
 
@@ -97,7 +97,7 @@ We have just ran `asmstats` which is a nice script written by my boss Shane McCa
 We know all fasta sequence have a header starting with `>` plus an ID. Then, in the next line we have our DNA or protein sequence. So, if we want to count the number of sequences in a fasta file, one thing we can do it count how many times `>` happens in that file. We can do that as follows:
 
 ```
-zcat ilAgrStra1_PacBioHiFi_filtered.fasta.gz | grep ">" | wc
+zcat ilAgrStra1_PacBioHiFi_filtered.0.5.fasta.gz | grep ">" | wc
 
 ```
 Let me explain the command above: first we are displaying the content of the compressed file with zcat (if the file wasn't zipped, we could go straight to grep), then we use a pipe `|` that basically sends the result of our first command to the next, so we are displaying the content of the zipped multifasta file, and then we are using `grep` to find a specific pattern inside our file, which is `>`. Finally we send the result of grep with a pipe `|` to another comand, the `wc`, which basically means _word count_. So we are counting how many times the symbol `>` happens in that file, wich is the same as calculating how many fasta sequences we have in our fasta file. :)  
@@ -106,7 +106,7 @@ Let me explain the command above: first we are displaying the content of the com
 Ok, I know the numbering seems a bit confusing as we just came back to 2.1. This is not wrong, it's because now we are going to go back to the results we got by running `FastK`. If you run was successful, you should now have two files in your kmers directory, one that ends in `.hist` and the other in `.prof`. We want to use the `.hist` output now to create a user readable histogram from Gene's kmer counter. We do this with `Histex` and GeneScopeFK from the same FastK package.
 
 ```
-Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | Rscript GeneScopeFK.R -o Output -k 31
+Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.0.5.hist | Rscript GeneScopeFK.R -o Output -k 31
 ```
 Ok, if the command about was succesful, it should create a series of outputs in the Output folder. Go inside it and open the linear_plot.png and answer the questions bellow:
 
