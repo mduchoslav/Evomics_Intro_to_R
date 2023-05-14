@@ -61,13 +61,13 @@ FastK -k31 -p ./ilAgrStra1_PacBioHiFi_filtered.fasta.gz
 This will take around 45 minutes to run, so let's go to step 3 to run a few more analyses, and we come back to this step in 45. Open a new terminal tab and continue working there.
 
 ## 3. Reads general analyzes and statistics
-Ok, so while `FastK` is running, I want you to get to know your dataset a bit better. So we are going to plot your reads lenght distribution, and we are going to calculate general metrics for your reads. It's important that we understand the data we are assembling. Looking at a plot of our reads length distribution, knowing general statistics for our file and doing a kmer analysis are fundamental steps to know what to expect when are assembly is done. 
+Ok, so while `FastK` is running, I want you to get to know your dataset a bit better. So we are going to plot your reads length distribution, and we are going to calculate general metrics for your reads. It's important that we understand the data we are assembling. Looking at a plot of our reads length distribution, knowing general statistics for our file and doing a kmer analysis are fundamental steps to know what to expect when an assembly is done. 
 
 ### 3.1 Plotting reads length distribution
  You can use this python script I wrote to plot your reads length distribution as such:
  
  ```
- python plot_fasta_length.py ilAgrStra1_PacBioHiFi_filtered.fasta.gz ilAgrStra1_PacBioHiFi_filtered.png &
+python /home/genomics/software/extra/plot_fasta_length.py ilAgrStra1_PacBioHiFi_filtered.fasta.gz ilAgrStra1_PacBioHiFi_filtered.png &
  ```
  This will run for a few minutes, go to the next step.
 
@@ -106,9 +106,9 @@ Let me explain the command above: first we are displaying the content of the com
 Ok, I know the numbering seems a bit confusing as we just came back to 2.1. This is not wrong, it's because now we are going to go back to the results we got by running `FastK`. If you run was successful, you should now have two files in your kmers directory, one that ends in `.hist` and the other in `.prof`. We want to use the `.hist` output now to create a user readable histogram from Gene's kmer counter. We do this with `Histex` and GeneScopeFK from the same FastK package.
 
 ```
-Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | Rscript GeneScopeFK.R -o Output -k 31
+Histex -h1:1000 -G ilAgrStra1_PacBioHiFi_filtered.hist | GeneScopeFK.R -o Output -k 31
 ```
-Ok, if the command about was succesful, it should create a series of outputs in the Output folder. Go inside it and open the linear_plot.png and answer the questions bellow:
+Ok, if the command about was successful, it should create a series of outputs in the Output folder. Go inside it and open the linear_plot.png and answer the questions below:
 
 Does the reads kmer plotted fit the model?
 What is the expected genome size?
@@ -116,17 +116,17 @@ What is the expected heterozigosity?
 What is the expected repeat content?
 
 
-Exciting! You have done a kmer count and analyses of a complete PacBio dataset! &hearts; #StayCalmAndCountKmers 
+Exciting! You have done a kmer count and analyses of a PacBio dataset! &hearts; #StayCalmAndCountKmers 
 
 ## 4. Genome assembly with Hifiasm
 
-Ok, now that we learned a lot about kmer counting and we know the general statistics of our dataset, we are going to run hifiasm to assemble some reads! Unfortunatelly we cannot run hifiasm for the full dataset as it would use too much memory, so I have prepared a smaller dataset for us to run. This dataset is the one you have copied to your hifiasm folder.
+Ok, now that we learned a lot about kmer counting and we know the general statistics of our dataset, we are going to run hifiasm to assemble some reads! Unfortunately we cannot run hifiasm for the full dataset as it would use too much memory, so I have prepared a smaller dataset for us to run. This dataset is the one you have copied to your hifiasm folder.
 
 Ok, so the first thing you can do is to run `asmstats` to understand a bit about this small dataset. Or you can at least use the `grep` command (3.3) to count how many reads we have in this smaller dataset.
 
 ```
-# go to the hifiasm directory
-cd ../hifiasm
+# go to the hifiasm directory from the Output folder:
+cd ../../hifiasm
 
 #Run asmstats on the file
 asmstats PacBioHiFi_100.fa.gz > PacBioHiFi_100.fa.gz.stats
@@ -139,16 +139,16 @@ Now let's run hifiasm on this small dataset.
 ```
 hifiasm -o ilAgrStra1.asm -t 4 PacBioHiFi_100.fa.gz
 ```
-This should take only a couple of minutes. Once its done, hifiasm will output a series of files, they will end in `.bed` and `.gfa.`. Have a look at the [hifiasm](https://github.com/chhylp123/hifiasm) github page to get acostumed with the software. 
+This should take only a couple of minutes. Once its done, hifiasm will output a series of files, they will end in `.bed` and `.gfa.`. Have a look at the [hifiasm](https://github.com/chhylp123/hifiasm) github page to get accustomed with the software. 
 
-The first output we are interested in is the one ending in `.asm.bp.r_utg.noseq.gfa`. Open this file on [bandage](https://github.com/rrwick/Bandage/releases/). Bandage will look something like the image bellow, you need to upload the file and then click `Draw graph`.
+The first output we are interested in is the one ending in `.asm.bp.r_utg.noseq.gfa`. Open this file on [bandage](https://github.com/rrwick/Bandage/releases/). Bandage will look something like the image below, you need to upload the file and then click `Draw graph`.
 
 
 ![image](https://user-images.githubusercontent.com/4116164/236863823-05841121-6dd8-40af-8885-6482662f423c.png)
 
  
 Humn... what do you see when you look at the Bandage image? Is it a linear or circular sequence? Interesting... 
-Ok, now we are going to go back to the other Hifiasm outputs. We have open the unitigs one on Bandage, but now we want to work with the final contig output Hifiasm has generated. Hifiasm outpus it all in the [.gfa](http://gfa-spec.github.io/GFA-spec/GFA1.html) format, so we need to use the one-liner bellow to get a fasta sequence out of the `.gfa`.
+Ok, now we are going to go back to the other Hifiasm outputs. We have open the unitigs one on Bandage, but now we want to work with the final contig output Hifiasm has generated. Hifiasm outpus it all in the [.gfa](http://gfa-spec.github.io/GFA-spec/GFA1.html) format, so we need to use the one-liner below to get a fasta sequence out of the `.gfa`.
 
 ```
 awk '/^S/ {print ">"$2"\n"$3}' ilAgrStra1.asm.bp.p_ctg.gfa > ilAgrStra1.asm.bp.p_ctg.fa
@@ -162,7 +162,7 @@ asmstats ilAgrStra1.asm.bp.p_ctg.fa > ilAgrStra1.asm.bp.p_ctg.fa.stats
 ```
 What are the statistics of this file? N50, how many contigs assembled, total assembly size?
 
-Ok, so at the beginning of the tutorial I told you that we would be assembling the moth _Agriphila straminella_. But this small dataset contain only a few reads. I wonder if we have assembled something specific from _A. straminella_, like a specific chromossome or... ? Could you copy some of the sequence you've assembled and [blast it on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)?
+Ok, so at the beginning of the tutorial I told you that we would be assembling the moth _Agriphila straminella_. But this small dataset contain only a few reads. I wonder if we have assembled something specific from _A. straminella_, like a specific chromosome or... ? Could you copy some of the sequence you've assembled and [blast it on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi)?
 
 To select a portion of the sequence do:
 
@@ -176,7 +176,7 @@ Let's dicuss this and all the other results we have generated until now as a big
 
 ## 5. Assembling and annotating mitochondrial genomes
 
-Beyond the nuclear genome, we have inside (most of) all us animals another genome: the mitochondria. PacBio HiFi is great in assembling it too, but because of the circular nature of the molecule, assemblers often assemble it redundantly (as we just discussed for the case above). So I have written a pipeline to specifically assemble mitochondrial genomes, it's called [MitoHiFi](https://github.com/marcelauliano/MitoHiFi). MitoHiFi basically orchestrats a series of other tools to assemble (Hifiasm is the assembler inside it!), remove redandancy, annotate, rotate, produce plots and statistics for your mitogenome. MitoHiFi was written to work with PacBio HiFi reads and it has many running modes. Today we are going to run it starting from reads (parameter `-r`).
+Beyond the nuclear genome, we have inside (most of) all us animals another genome: the mitochondria. PacBio HiFi is great in assembling it too, but because of the circular nature of the molecule, assemblers often assemble it redundantly (as we just discussed for the case above). So I have written a pipeline to specifically assemble mitochondrial genomes, it's called [MitoHiFi](https://github.com/marcelauliano/MitoHiFi). MitoHiFi basically orchestrates a series of other tools to assemble (Hifiasm is the assembler inside it!), remove redandancy, annotate, rotate, produce plots and statistics for your mitogenome. MitoHiFi was written to work with PacBio HiFi reads and it has many running modes. Today we are going to run it starting from reads (parameter `-r`).
 
 Because MitoHiFi has a lot of dependencies, we have built its own little universe: we built a Docker container for MitoHiFi. So anytime someone executes MitoHiFi from this Docker container (it can be from Docker or with [singularity](https://docs.sylabs.io/guides/2.6/user-guide/singularity_and_docker.html), for example), this person won't find any problems with software dependencies because it is all contained inside that little MitoHiFi Docker universe.
 
@@ -187,7 +187,7 @@ We are going to execute MitoHiFi Docker image with singularity today. First let'
 pwd
 
 #change directories. The command to go to the MitoHiFi folder should be something like the below:
-cd ../genome_assembly/MitoHiFi
+cd ../MitoHiFi
 
 
 # List your directory. We are going to need the `PacBioHiFi_100.fa.gz` file for this run. Do you see it there?
@@ -200,9 +200,9 @@ For you to have a look at the help message of MitoHiFi and to start getting to k
 singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif mitohifi.py --help
 ```
 
-Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. To do that, it maps those reads to a close-related mitogenome reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before your start MitoHiFi is the following.
+Ok, so one way that MitoHiFi works is from selecting mitochondrial reads from a pot of whole-genome sequenced reads. To do that, it maps those reads to a closely-related mitogenome reference. To allow this step, we have writen a python script that downloads a complete close-related reference for you from the NCBI. So the first command you need to run before you start MitoHiFi is the following.
 
-Remember we are assembling data for _Agriphila straminella_. So we want to find the closest referent available for it, including it's own mitogenome, if available.
+Remember we are assembling data for _Agriphila straminella_. So we want to find the closest reference available for it, including it's own mitogenome, if available.
 
 ```
 singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif findMitoReference.py --species "Agriphila straminella" --outfolder . --min_length 16000
@@ -213,7 +213,7 @@ This should write two files for a reference mitogenome (NC_061606.1) to your fol
 Now we have all we need to run MitoHiFi. Good! We are going to use the reference we just download for parameters `-f` and `-g` and we are going to use our PacBio 100 reads as input in `-r`. The `-r` are the reads we want to assemble in order to get our mitogenome done.
 
 ```
-singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_061606.1.fasta -g NC_061606.1.gb -o 5 -t 4 
+singularity exec --cleanenv --bind /home/genomics/workshop_materials/genomeAssembly_files:/home/genomics/workshop_materials/genomeAssembly_files --bind ${PWD}:${PWD} /home/genomics/workshop_materials/genomeAssembly_files/mitohifi.sif mitohifi.py -r PacBioHiFi_100.fa.gz -f NC_073521.1.fasta -g NC_073521.1.gb -o 5 -t 4 
 ```
 
 Nice, ok. This will now run for a few minutes. What we are running above is the following: we are starting MitoHiFi from the unasembled reads of our species of insterest (`-r`), using the mitogenome of _Crambus perlellus_ as a close-related reference in `-f` and `-f`. MitoHiFi is going to annotate the mitogenome with MitoFinder, and for that it needs the genetic mitochondrial code for invertebrates which is given with `-o 5 `. Finally, we are using 4 CPUs (or threads) for this run `-t 4`.
