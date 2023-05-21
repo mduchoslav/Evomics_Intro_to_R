@@ -1,17 +1,3 @@
----
-title: "R tutorial for Workshop on Genomics in Cesky Krumlov"
-author: "Janina Rinke, Karthik Singhal, Milos Duchoslav"
-date: "May 2023"
-output:
-  html_document:
-   code_folding: show
-   toc: true
-   toc_float: true
-  pdf_document: default
-editor_options: 
-  chunk_output_type: console
----
-
 ### 1 Introduction
 
 Welcome to the `R` and `ggplot2` session. The purpose of this file is to guide you through the exercises.
