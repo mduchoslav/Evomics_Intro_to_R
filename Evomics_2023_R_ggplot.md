@@ -1,11 +1,11 @@
 ### 1 Introduction
 
 Welcome to the `R` and `ggplot2` session. The purpose of this file is to guide you through the exercises.
-In this session, we will use an R Markdown file. R Markdown documents are good for keeping the R code, plots and descriptions (structured text) in one place. It enables you to make nice reports from the data that can be exported as html, pdf etc. You can find more information on R Markdown [here](https://rmarkdown.rstudio.com/lesson-1.html) and a cheatcheet for R Markdown [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
+In this session, we will use an R Markdown file. R Markdown documents are good for keeping the R code, plots, and descriptions (structured text) in one place. It enables you to make nice reports from the data that can be exported as html, pdf, etc. You can find more information on R Markdown [here](https://rmarkdown.rstudio.com/lesson-1.html) and a cheatcheet for R Markdown [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
 
 #### Some general useful information:
 If you want to insert a new code chunk, you can do it with `ctrl + alt + i` (Mac: `opt + cmd + i`).
-Pressing `ctrl + enter` (Mac: `cmd + enter`) sends the line of code where the cursor is (or the selected code) to the console and runs it. You can run whole chunk by pressing the green triangle on the right side.
+Pressing `ctrl + enter` (Mac: `cmd + enter`) sends the line of code where the cursor is (or the selected code) to the console and runs it. You can run a whole chunk by pressing the green triangle on the right side.
 
 ```{r setup, include=FALSE}
 # Define the global chunk options
