@@ -572,3 +572,6 @@ Hint: This file is tab-separated. Use the `read.table()` function with arguments
 
 ```
 
+Thank you for participating in this session! 
+We hope you had great fun and got more familiar with R :) 
+If you have any feedback, comments, or spot some errors - please let us know by writing to milos.duchoslav[at]natur.cuni.cz. 
