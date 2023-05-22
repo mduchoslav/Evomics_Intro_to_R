@@ -42,7 +42,7 @@ You can set a working folder in R. It is the default folder where you read and w
 # Check the current working folder
 getwd()
 # Set the working folder
-#setwd("/home/genomics/workshop_materials/r_ggplot2")
+setwd("/home/genomics/workshop_materials/r_ggplot2")
 ```
 
 
