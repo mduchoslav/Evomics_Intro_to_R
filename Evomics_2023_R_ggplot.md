@@ -59,8 +59,7 @@ Load the dataset and take a look at it:
 
 ```{r Load data}
 #Import the data and assign it the name "plantData" using <-
-#plantData <- read.csv("~/workshop_materials/r_ggplot2/plantData.csv")
-plantData <- read.csv(file = "plantData.csv")
+plantData <- read.csv("~/workshop_materials/r_ggplot2/plantData.csv")
 ```
 
 With the above command you have loaded your dataset into R and can start working on it!
