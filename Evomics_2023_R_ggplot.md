@@ -3,6 +3,16 @@
 Welcome to the `R` and `ggplot2` session. The purpose of this file is to guide you through the exercises.
 In this session, we will use an R Markdown file. R Markdown documents are good for keeping the R code, plots, and descriptions (structured text) in one place. It enables you to make nice reports from the data that can be exported as html, pdf, etc. You can find more information on R Markdown [here](https://rmarkdown.rstudio.com/lesson-1.html) and a cheatcheet for R Markdown [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
 
+We will use the `wget` command to download the R Markdown file from the github repository. When you open the RStudio window using Guacamole, navigate to the terminal tab. The terminal here is similar to the one in guacamole. You can start by navigating to the following folder- 
+
+`/home/genomics/Desktop/workshop_materials/r_ggplot2`
+
+Here we can use the wget command to download our file from the github repository as follows-
+
+`wget https://raw.githubusercontent.com/janina-rinke/Teaching/main/Evomics_2023_R_ggplot.Rmd`
+
+Now, use `ls` to list all files in the directory. You should see some data files as well as the R Markdown file you just downloaded. Now using the Files tab on the bottom right of the screen, navigate to `/home/genomics/Desktop/workshop_materials/r_ggplot2` and double click on the `Evomics_2023_R_ggplot.Rmd` file to open it. 
+
 #### Some general useful information:
 If you want to insert a new code chunk, you can do it with `ctrl + alt + i` (Mac: `opt + cmd + i`).
 Pressing `ctrl + enter` (Mac: `cmd + enter`) sends the line of code where the cursor is (or the selected code) to the console and runs it. You can run a whole chunk by pressing the green triangle on the right side.
@@ -552,7 +562,8 @@ Hints: You can use `group_by()` and `summarise()` functions from the `dplyr` pac
 
 ```
 
-**Treasure hunt:** Import the file `XA53_experiment.txt` from your working folder and plot the data. Can you find something interesting in the data? Let us know if you find an interesting pattern.
+**Treasure hunt:** Use `wget` to download the file `XA53_experiment.txt` from the following github link-
+`https://raw.githubusercontent.com/janina-rinke/Teaching/main/XA53_experiment.txt`. Read it into RStudio and plot/ explore the data. Can you find something interesting when you plot it? Let us know if you find an interesting pattern.
 
 Hint: This file is tab-separated. Use the `read.table()` function with arguments `sep = "\t"` (separator of the fields is tabulator) and `header = T` (to use the first line of the file as column names).
 
