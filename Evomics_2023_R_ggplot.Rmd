@@ -139,7 +139,7 @@ We have a list of the plants that were repotted during the experiment. The info 
 
 **Exercise 1:** Load the `info_repotted.csv` dataset.
 
-First, use the function `read.csv()` to read the data from file `"~/workshop_materials/r_ggplot2/info_repotted.csv"` in an object called `df`. Then you can look at the data using some of the functions used above.
+First, use the function `read.csv()` to read the data from file `"~/workshop_materials/r_ggplot2/info_repotted.csv"`, and assign it to a variable called `df` (dataframe). Then you can look at the data using some of the functions used above.
 
 ```{r load data 2}
 
@@ -153,7 +153,7 @@ First, use the function `read.csv()` to read the data from file `"~/workshop_mat
 If you succeeded, you can see that the list in the file is not in a very useful format. We first need to split the column `info` into two columns. Then we can intersect the two dataframes based on the column `plant_id` (thus adding the term "repotted" to the corresponding plants). For similar tasks like extracting something from longer strings, **regular expressions** are often very useful, so it is well worth to learn them.
 
 #### Manipulate data with `dplyr` or Base R
-We will show you different possibilities to manipulate & filter your data. For every single step that you would like to perform on your data, there are several methods existing in R. We will present the `dplyr/tidyr` package and the `Base R` syntax here, but in the end you should find the method which is most suitable for you. 
+We will show you different possibilities to manipulate & filter your data. For every single step that you would like to perform on your data, there are several methods existing in R. We will present the `dplyr/tidyr` package and the `Base R` syntax here, please run both possibilities and compare the results. In the end (for your own scripts and analysis) you should find the method which is most suitable for you. 
 
 **dplyr/tidyr** 
 The `dplyr` package uses a similar syntax to Unix, the `%>%` symbol in `dplyr` simply represents the `|` (pipe) symbol in Unix. Find a cheat sheet [here](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
