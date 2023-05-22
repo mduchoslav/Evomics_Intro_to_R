@@ -69,7 +69,7 @@ Some explanations:
 * Everything that is after `#` is regarded as comment and not code.
 * `plantData` is a name of the new object.
 * `read.csv` is a function that we used to read a comma-separated file ending with `.csv`.
-* In the brackets `()` after the function name are the arguments to the function (now we have only the `file` argument, if there would be more, you would separate them with comma `,`). It is not needed to name the arguments if they are in the right order (you can use only `plantData <- read.csv("plantData.csv")`).
+* In the brackets `()` after the function name are the arguments to the function (now we have only the `file` argument, if there would be more, you would separate them with comma `,`). It is not needed to name the arguments if they are in the right order (you can use only `plantData <- read.csv("plantData.csv")` or provide the full path to the dataset (`plantData <- read.csv("~/workshop_materials/r_ggplot2/plantData.csv")`, depending on where you have set your working directory before (`set_wd`).
 * `<-` is used to assign the output of the function to the `plantData` object.
 
 Now we do some check ups on our dataset. You do not need to run these commands but they are very useful to get familiar with a dataset.
