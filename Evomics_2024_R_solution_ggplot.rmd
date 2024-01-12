@@ -1,7 +1,7 @@
 ---
 title: "R tutorial for Workshop on Genomics in Cesky Krumlov"
-author: "Janina Rinke, Kartik Singhal, Milos Duchoslav"
-date: "May 2023"
+author: "Janina Rinke, Kartik Singhal, Milos Duchoslav, Luis Chica"
+date: "January 2024"
 output:
   html_document:
    code_folding: show
