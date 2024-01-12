@@ -4,6 +4,18 @@
 Welcome to the `R` and `ggplot2` session. The purpose of this file is to guide you through the exercises.
 In this session, we will work in RStudio and use an R Markdown file. R Markdown documents are good for keeping the R code, plots and descriptions (structured text) in one place. It enables you to make nice reports from the data that can be exported as html, pdf etc. You can find more information on R Markdown [here](https://rmarkdown.rstudio.com/lesson-1.html) and a cheatsheet for R Markdown [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf).
 
+We will use the `wget` command to download the R Markdown file from the github repository. When you open the RStudio window (`<Your_IP>:8787`), navigate to the terminal tab. The terminal here is similar to the one in guacamole. You can start by navigating to the following folder:
+
+ `cd /home/genomics/Desktop/workshop_materials/r_ggplot2`
+
+ Here we can use the `wget` command to download our file from the github repository with the following command:
+
+ ```{r}
+ wget https://raw.githubusercontent.com/janina-rinke/Teaching/main/Evomics_2024_R_solution_ggplot.rmd
+ ```
+
+ Now, use `ls` to list all files in the directory. You should see some data files as well as the R Markdown file you just downloaded. Now using the Files tab on the bottom right of the screen, navigate to `/home/genomics/Desktop/workshop_materials/r_ggplot2` and double click on the `Evomics_2023_R_ggplot.Rmd` file to open it. 
+
 #### Some general useful information:
 If you want to insert a new code chunk, you can do it with `ctrl + alt + i` (Mac: `opt + cmd + i`).
 Pressing `ctrl + enter` (Mac: `cmd + enter`) sends the line of code where the cursor is (or the selected code) to the console and runs it. You can run whole chunk by pressing the green triangle on the right side.
