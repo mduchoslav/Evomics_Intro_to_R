@@ -669,7 +669,7 @@ p8b
 #### Exporting plots from R
 We have seen above how to save several plots to pdf. The `ggplot` package provides also an easy way how to save plot. Here is an example how to save the fanciest plot as PDF.
 ```{r}
-ggsave(filename = "Evomics2023_fanciest_plot.pdf", plot = p1_fanciest, width = 7, height = 7)
+ggsave(filename = "Evomics2024_fanciest_plot.pdf", plot = p1_fanciest, width = 7, height = 7)
 ```
 
 
