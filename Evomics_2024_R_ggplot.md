@@ -210,12 +210,8 @@ plantData <- plantData %>%
 
 
 **Exercise 2:** Rename columns `NPQ_L3` and `NPQ_L4` into `NPQ_t3` and `NPQ_t4`.
-```{r rename other two columns, class.source= 'fold-hide'}
-plantData <- plantData %>%
-  dplyr::rename(NPQ_t3 = NPQ_L3, NPQ_t4 = NPQ_L4)
+```{r}
 
-# Another example how to rename your columns based on position of column
-# colnames(plantData)[7:10] <- c("NPQ_t1", "NPQ_t2", "NPQ_t3", "NPQ_t4")  # The line is "commented" to not run it.
 ```
 
 Now we will add a column which explains the condition better (c -> control, d -> drought, s -> salt). We will name the new column `condition_info`.
@@ -267,23 +263,18 @@ pD_clean <- plantData %>%
 
 Hint: Use the `nrow()` function or `dim()` function on the original `plantData` data.frame and on the new `pD_clean` data.frame.
 
-```{r dimensions, class.source= 'fold-hide', eval=FALSE}
-# Dimensions of the original data.frame (number of rows and number of columns)
-dim(plantData)
-# Dimensions of the cleaned data.frame
-dim(pD_clean)
+```{r}
+
 ```
 
 **Exercise 4:** Filter the `plantData` dataset so that you will only keep the plants that have died in a new dataframe. Make sure to assign it a new name, so you do not overwrite your original dataset which we will use for plotting in the next section.
-```{r keep NAs only, class.source= 'fold-hide'}
-pD_deadPlants <- plantData %>%
-  filter(is.na(size_mm2), is.na(QY_max))
+```{r}
+
 ```
 
 **Exercise Optional**: Let's say we are working with the `plantData` dataframe and want to simplify the analysis by focusing on only a few columns. Use `select()` to create a new dataframe that includes only the `plant_id`, `genotype`, `condition`, and the newly created `size_category` columns.
-```{r select specific columns, class.source= 'fold-hide'}
-simplifiedPlantData <- plantData %>%
-  dplyr::select(plant_id, genotype, condition, size_category)
+```{r}
+
 ```
 
 **Congrats!** You are now good to go to create some nice plots with your `pD_clean` dataset! :) 
@@ -303,10 +294,8 @@ Start with making a basic boxplot of just the wt plants.
 
 Hint: Use the function `filter` from the package `dplyr`. As an argument for the `filter` function you should use `genotype == "wt"`. We use the double equal sign `==`, because the algorithm is going through each row of the dataframe and checking whether the `genotype` is `wt` or something else, returning TRUE or FALSE. Single equal sign `=` is used for assigning values to arguments.
 
-```{r solution pD_clean_wt , class.source= 'fold-hide'}
-# Subset your data to only have wt genotype
-pD_clean_wt <- pD_clean %>%
-  filter(genotype == "wt")
+```{r}
+
 ```
 
 We will use some of the "geoms" (geometric objects) introduced earlier to make our plots today. While there are many geoms possible ([list of geoms](https://ggplot2.tidyverse.org/reference/index.html#section-layer-geoms)), we will focus on the following geoms in this session:
@@ -339,10 +328,8 @@ You see that you can create an object with the output from the `ggplot()` functi
 
 **Exercise 6:** Make a similar boxplot that will show size of the plants (`size_mm2`) instead of QY_max.
 
-```{r solution - p2, class.source= 'fold-hide'}
-p2 <- ggplot(pD_clean_wt, aes(x=condition_info, y=size_mm2)) +
-  geom_boxplot()
-p2
+```{r}
+
 ```
 
 Now we will make a stripplot (single-axis scatter plot) to have a better sense of the real data.
@@ -363,13 +350,8 @@ p3a
 **Exercise 7:** Make the same stripplot for the genotype *psbo1cr*, showing `QY_max` values for different conditions.
 
 Hint: You should first filter the dataframe called `pD_clean` to get only the plants of the right `genotype`. Then, make the plot.
-```{r solution - p4, class.source= 'fold-hide'}
-# Subset your data to only have psbo1cr genotype
-pD_clean_psbo1cr <- pD_clean %>%
-  filter(genotype == "psbo1cr")
-p4 <- ggplot(pD_clean_psbo1cr, aes(x=condition_info, y=QY_max)) + 
-  geom_jitter(width = 0.1)
-p4
+```{r}
+
 ```
 
 *Comment on biology: You can see that the QY_max values for psbo1cr are lower than for the wt, but they do not differ much for the different conditions.*
@@ -405,14 +387,8 @@ p6a
 
 Hint: You should first filter the dataframe called `pD_clean` to get only the plants of the right `condition_info`. Then, make the plot.
 
-```{r solution - p6b}
-pD_clean_control <- pD_clean %>%
-  filter(condition_info == "Control")
-p6b <- ggplot(pD_clean_control, aes(x=QY_max, y=size_mm2)) + 
-  geom_point(aes(colour = genotype)) + 
-  geom_smooth(method = lm) +
-  ggtitle("QY_max vs size_mm2 scatterplot for control condition")
-p6b
+```{r}
+
 ```
 
 If you succeeded to make the plot, you can see that in this case, there is a positive relationship between `QY_max` and `size_mm2`. The *psbo1cr* plants are smaller and have lower `QY_max` values compared to other genotypes.
@@ -492,25 +468,7 @@ getwd()
 
 **Exercise 9:** Make strip plots of `QY_max`, one for each condition, that will show the differences between genotypes. You can either export them to pdf or just show them in the Plots window.
 
-```{r solution - for loop plots, class.source= 'fold-hide'}
-# We can grab the entire genotype column from the pD_clean dataframe, and then use the unique function for the individual genotypes.
-condition_vector <- unique(pD_clean$condition_info)
-# Check the unique condition_info values
-condition_vector
-
-# For loop to iterate through conditions
-for (iterated_condition in condition_vector) {
-  # Subset the dataframe to only have the iterated genotype in for loop
-  pD_clean_gt <- pD_clean %>%
-    filter(condition_info == iterated_condition)
-  
-  # generate a strip plot for that genotype
-  p_temp <- ggplot(pD_clean_gt, aes(x = genotype, y = QY_max)) + 
-  geom_jitter(width = 0.1) +
-  ggtitle(condition_vector)
-  
-  print(p_temp)
-}
+```{r}
 
 ```
 
@@ -518,33 +476,8 @@ for (iterated_condition in condition_vector) {
 
 Hint: Enclose the previously used `for` loop inside another `for` loop that will cycle through the two variables.
 
-```{r solution - multiple for loops, class.source= 'fold-hide'} 
-# We can grab the entire genotype column from the pD_clean dataframe, and then use the unique function for the individual genotypes.
-condition_vector <- unique(pD_clean$condition_info)
-# Check the unique condition_info values
-condition_vector
+```{r} 
 
-# Check variables to iterate through
-colnames(pD_clean) # size and QY_max are columns 6 and 7
-
-# For loop to iterate through variables
-for(col_num in 6:7) { # iterate through numbers 6 to 7
-  
-  # For loop to iterate through conditions
-  for (iterated_condition in condition_vector) {
-    # Subset the dataframe to only have the iterated genotype in for loop
-    pD_clean_gt <- pD_clean %>%
-      filter(condition_info == iterated_condition)
-    
-    # generate a strip plot for that genotype
-    p_temp <- ggplot(pD_clean_gt, aes(x=genotype, y=pD_clean_gt[, col_num])) + # square brackets are used for subsetting [row, column]
-      geom_jitter(width = 0.1) +
-      ggtitle(paste0(colnames(pD_clean)[col_num], " (", iterated_condition, ")")) + # compile the plot title from the variable name and genotype
-      ylab(colnames(pD_clean)[col_num]) # add the variable (column) name as the y-axis title
-    
-    print(p_temp)
-  }
-}
 ```
 
 
@@ -618,47 +551,21 @@ The theme layer in `ggplot2` is used to customize all non-data components of plo
 
 Hint: Square is a shape number 15.
 
-```{r solution - p1_fanciest, class.source= 'fold-hide'}
-p1_fanciest <- ggplot(pD_clean_wt, aes(x=condition_info, y=QY_max)) +
-  geom_boxplot(aes(color = condition_info)) + # color the boxplots by condition
-  geom_point(shape = 15, color = "black") + # color the points by condition, and also change their shapes
-  theme_classic() +
-  ggtitle("Condition info vs QY_max boxplot for wildtype genotype \n with color and points as squares") + #Note the \n (new line) that allows us to split super long titles into 2 lines! 
-  xlab("Treatment conditions") + 
-  ylab("QY max") +
-  scale_color_manual(values = c("aquamarine", "purple", "darkblue"))
-p1_fanciest
+```{r}
+
 ```
 
 **Extra exercise:** We would like to check whether the time of measurement (the time that the plants were standing by the instrument waiting for measurement) might have influenced the results. Plot the dependence of QY_max on time of measurement for different conditions and genotypes as a scatterplot. Distinguish conditions by colors of points and genotypes by shapes of points.
-```{r extra task, class.source= 'fold-hide'}
-#Plot dependance
-p8 <- ggplot(pD_clean, aes(x=time, y=QY_max)) +
-  geom_point(aes(shape = genotype, color = condition_info)) + # change shape and color of the points
-  labs(color = "Condition Info", shape = "Genotype") + # change legend titles
-  xlab("Time of measurement (min)") + # add x axis label
-  ylab("QY max") + # add y axis label
-  theme_classic() # change theme
+```{r}
 
-p8
 ```
 If you succeeded, you can see that the result is not very useful. As the *psbo1cr* plants have much lower values, we can't see a possible small slope in the data.
 
 **Extra exercise:** Make the same plot, but showing only wt and *psbo2cr* plants.
 
 Hint: For filtering of the dataframe, you need to use several values of genotypes. For this, you shouldn't use the double equal sign operator `==`, but operator `%in%`, meaning "the value should be in the following list of values". The list of the values (vector) should be in the function `c()`.
-```{r solution - p8b, class.source= 'fold-hide'}
-# Subset the dataframe
-pD_clean_sub <- pD_clean %>%
-    filter(genotype %in% c("wt", "psbo2cr"))
-p8b <- ggplot(pD_clean_sub, aes(x=time, y=QY_max)) +
-  geom_point(aes(shape = genotype, color = condition_info)) + # change shape and color of the points
-  labs(color = "Condition Info", shape = "Genotype") + # change legend titles
-  xlab("Time of measurement (min)") + # add x axis label
-  ylab("QY max") + # add y axis label
-  theme_classic() # change theme
+```{r}
 
-p8b
 ```
 
 *Comment on biology: You can see that there is not any visible slope in the data. This means that there is probably no bias given by the time of the measurement.*
@@ -677,52 +584,14 @@ Hints: You can use `group_by()` and `summarise()` functions from the `dplyr` pac
 
 *Comments on biology: The non-photochemical quenching of chlorophyll fluorescence (NPQ) is a process by which the plants avoid overexcitation and damage of their photosynthetic apparatus. By this process, the energy from light that was absorbed by the chlorophyll molecules is safely converted to heat. Before the measurements, the plants were in darkness for at least 30 minutes. This caused the NPQ to be relaxed (switched off). In the beginning of each measurement, the plant was exposed to light, which induced activation of the NPQ. Thus, we should see increase of the NPQ during subsequent time points. The differences between genotypes might help with interpretation of the differences between their photosynthetic machineries.*
 
-```{r solution npq, class.source= 'fold-hide'}
-# Do a line plot for NPQ columns with the different timepoints measured
+```{r}
 
-# First, it looks like the NPQ columns have a lot of NA values. So, same as before, we'll remove rows with NAs. 
-pD_clean_2 <- pD_clean %>%
-  filter(!is.na(NPQ_t1), !is.na(NPQ_t2), !is.na(NPQ_t3), !is.na(NPQ_t4))
-
-# Group by genotype and condition_info (this means that your new dataframe will have columns with genotype and condition_info)
-# Next use the summarise function to take the mean of the NPQ timepoint values for each of the 9 genotype-condition_info groups
-NPQ_summary <- pD_clean_2 %>% group_by(condition_info, genotype) %>% 
-  summarise(across(c(NPQ_t1, NPQ_t2, NPQ_t3, NPQ_t4), mean))
-
-# Make sure you view the output NPQ_summary dataframe to see what it looks like!
-
-# Reshape the data to "long format" so that there is one column summarizing all 4 NPQ timepoints
-NPQ_summary_long <- NPQ_summary %>%
-  pivot_longer(cols = c(NPQ_t1, NPQ_t2, NPQ_t3, NPQ_t4), names_to = "Timepoint", values_to = "NPQ")
-
-# Create a new column with condition and genotype concatenated so that we can have 9 unique groups
-NPQ_summary_long_2 <- NPQ_summary_long %>%
-  unite(col = condition_genotype, condition_info, genotype, sep = "_", remove = F)
-
-# Create the line plot
-p7 <- ggplot(NPQ_summary_long_2, aes(x = Timepoint, y = NPQ, linetype = condition_info, color = genotype)) +
-  geom_point() +
-  geom_line(aes(group = condition_genotype)) +
-  labs(x = "Timepoints", y = "NPQ", title = "Line Plot of NPQ across Timepoints") 
-p7
 ```
 
 **Treasure hunt:** Import the file `XA53_experiment.txt` from your working folder and plot the data. Can you find something interesting in the data? Let us know if you find an interesting pattern.
 
 Hint: This file is tab-separated. Use the `read.table()` function with arguments `sep = "\t"` (separator of the fields is tabulator) and `header = T` (to use the first line of the file as column names).
 
-```{r solution hunt, eval=FALSE, class.source= 'fold-hide'}
-# Read the data
-exp <- read.table(file = "XA53_experiment.txt", sep = "\t", header = T)
+```{r}
 
-# Base R solution
-plot(exp$cell.width, exp$cell.height, col = as.factor(paste(exp$genotype, exp$treatment)))
-
-# ggplot solution
-# ploting width againts height and coloring according to treatment does not show anything
-ggplot(data = exp, aes(x = cell.width, y = cell.height, col = treatment)) +
-  geom_point()
-# doing the same and coloring according to genotype shows something :-)
-ggplot(data = exp, aes(x = cell.width, y = cell.height, col = genotype)) +
-  geom_point()
 ```
