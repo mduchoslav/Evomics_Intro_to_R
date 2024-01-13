@@ -11,7 +11,7 @@ We will use the `wget` command to download the R Markdown file from the github r
  Here we can use the `wget` command to download our file from the github repository with the following command:
 
  ```{r}
- wget https://raw.githubusercontent.com/janina-rinke/Teaching/main/Evomics_2024_R_solution_ggplot.rmd
+ wget https://raw.githubusercontent.com/janina-rinke/Teaching/main/Evomics_2024_R_ggplot.rmd
  ```
 
  Now, use `ls` to list all files in the directory. You should see some data files as well as the R Markdown file you just downloaded. Now using the Files tab on the bottom right of the screen, navigate to `/home/genomics/Desktop/workshop_materials/r_ggplot2` and double click on the `Evomics_2023_R_ggplot.Rmd` file to open it. 
