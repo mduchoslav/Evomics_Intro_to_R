@@ -510,7 +510,7 @@ for (iterated_condition in condition_vector) {
   # generate a strip plot for that genotype
   p_temp <- ggplot(pD_clean_gt, aes(x = genotype, y = QY_max)) + 
   geom_jitter(width = 0.1) +
-  ggtitle(condition_vector)
+  ggtitle(iterated_condition)
   
   print(p_temp)
 }
