@@ -710,6 +710,17 @@ p7 <- ggplot(NPQ_summary_long_2, aes(x = Timepoint, y = NPQ, linetype = conditio
 p7
 ```
 
+**Extra exercise:** An alternative way to visualize the above data is using a heatmap. We have not gone over these before, however, there is some information on making heatmaps in ggplot available here-  https://r-graph-gallery.com/79-levelplot-with-ggplot2.html.
+```{r solution npq heatmap, class.source= 'fold-hide'}
+p7_heatmap <- ggplot(NPQ_summary_long_2, aes(x = Timepoint, y = genotype)) +
+  geom_tile(aes(fill = NPQ)) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  facet_wrap(~condition_info) +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 60, hjust=1))
+p7_heatmap
+```
+
 **Treasure hunt:** Import the file `XA53_experiment.txt` from your working folder and plot the data. Can you find something interesting in the data? Let us know if you find an interesting pattern.
 
 Hint: This file is tab-separated. Use the `read.table()` function with arguments `sep = "\t"` (separator of the fields is tabulator) and `header = T` (to use the first line of the file as column names).
