@@ -709,15 +709,19 @@ p7 <- ggplot(NPQ_summary_long_2, aes(x = Timepoint, y = NPQ, linetype = conditio
   labs(x = "Timepoints", y = "NPQ", title = "Line Plot of NPQ across Timepoints") 
 p7
 ```
+The heatmap's interpretation is almost identical to the lineplot, where we observe the NPQ value increasing by timepoint across the conditions. It also allows a more straightforward comparison between geotypes so that we can observe that the *wt* and *psbo2cr* genotypes are similar while the *psbo1cr* genotype has higher NPQ values. 
 
 **Extra exercise:** An alternative way to visualize the above data is using a heatmap. We have not gone over these before, however, there is some information on making heatmaps in ggplot available here-  https://r-graph-gallery.com/79-levelplot-with-ggplot2.html.
+
+Hints: You can start from the same dataframe that you used for the line plot above, along with the `geom_tile()` function to make the heatmap. We suggest using `Timepoint` on the x-axis and `genotype` on the y axis, coloring by `NPQ` in the `geom_tile()` function. You can also use the `facet_wrap()` function with the `condition_info` column to split the plot by the various conditions! 
+
 ```{r solution npq heatmap, class.source= 'fold-hide'}
 p7_heatmap <- ggplot(NPQ_summary_long_2, aes(x = Timepoint, y = genotype)) +
   geom_tile(aes(fill = NPQ)) +
   scale_fill_gradient(low = "yellow", high = "red") +
   facet_wrap(~condition_info) +
   theme_minimal() + 
-  theme(axis.text.x = element_text(angle = 60, hjust=1))
+  theme(axis.text.x = element_text(angle = 60, hjust=1)) #rotate X-axis labels to avoid them overlapping.
 p7_heatmap
 ```
 
