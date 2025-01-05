@@ -740,4 +740,4 @@ ggplot(data = exp, aes(x = cell.width, y = cell.height, col = genotype)) +
 
 ### 5. End
 
-Thank you for doing this tutorial. If you have any comments or suggestions for improvement, you can write to Milos (duchmil[at]gmail.com) or tell us in person.
+Thank you for going through this tutorial. If you have any comments or suggestions for improvement, you can write to Milos (duchmil[at]gmail.com) or tell us in person.
