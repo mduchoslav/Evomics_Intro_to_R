@@ -1,6 +1,7 @@
 # R tutorial for Workshop on Genomics in Cesky Krumlov
 ## Janina Rinke, Kartik Singhal, Luis Chica, Milos Duchoslav
 ### January 2025
+This is a copy of ".rmd" file adjusted for better viewing on GitHub.
 
 
 ### 1 Introduction
