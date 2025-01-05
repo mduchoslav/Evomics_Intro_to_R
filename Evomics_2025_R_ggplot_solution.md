@@ -1,16 +1,7 @@
----
-title: "R tutorial for Workshop on Genomics in Cesky Krumlov"
-author: "Janina Rinke, Kartik Singhal, Luis Chica, Milos Duchoslav"
-date: "January 2025"
-output:
-  html_document:
-   code_folding: show
-   toc: true
-   toc_float: true
-  pdf_document: default
-editor_options: 
-  chunk_output_type: console
----
+# R tutorial for Workshop on Genomics in Cesky Krumlov
+## Janina Rinke, Kartik Singhal, Luis Chica, Milos Duchoslav
+### January 2025
+
 
 ### 1 Introduction
 
