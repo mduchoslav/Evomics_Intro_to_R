@@ -12,7 +12,7 @@ To use the tutorial at home, you need to:
 1. Download and install [RStudio](https://posit.co/download/rstudio-desktop/).
 2. Download this repository. You can use `git clone https://github.com/mduchoslav/Evomics_Intro_to_R` if you are on system with Git (like Linux) or download manually at least the files [Evomics_R_ggplot.rmd](Evomics_R_ggplot.rmd), [plantData.csv](plantData.csv), [info_repotted.csv](info_repotted.csv) and [XA53_experiment.txt](XA53_experiment.txt).
 3. You might need to install the packages needed (you can use `install.packages("package_name")` or the RStudio menu *Tools* -> *Install Packages*).
-4. In the beginning of the tutorial, you need to set the right working directory using the command `setwd("/change/to/path/of/your/folder/with/downloaded/files").
+4. In the beginning of the tutorial, you need to set the right working directory using the command `setwd("/change/to/path/of/your/folder/with/downloaded/files")`.
 
 ### Resources for deeper learning of R
 
